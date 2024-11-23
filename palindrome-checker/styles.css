@@ -4,9 +4,14 @@ body, h1, p {
     padding: 0;
 }
 
+/* Transitions for smoother effects */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
 /* Set a background color and font for the body */
 body {
-    background-color: #e0f7fa;
+    background: linear-gradient(135deg, #e0f7fa, #80deea);
     font-family: 'Arial', sans-serif;
     display: flex;
     justify-content: center;
@@ -21,7 +26,14 @@ main {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     padding: 30px;
     text-align: center;
-    width: 320px;
+    width: 90%;
+    max-width: 400px; /* Responsive width */
+    border: 2px solid transparent;
+    transition: border-color 0.5s;
+}
+
+main:hover {
+    border-color: #00796b; /* Highlight on hover */
 }
 
 /* Header styles */
@@ -29,6 +41,18 @@ h1 {
     color: #00796b; 
     margin-bottom: 20px;
     font-size: 24px; 
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Input field styles */
@@ -39,13 +63,17 @@ h1 {
     border-radius: 6px;
     margin-bottom: 15px;
     font-size: 16px;
-    transition: border-color 0.3s;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-/* Input field focus effect */
 .text-input:focus {
     border-color: #004d40;
     outline: none;
+    box-shadow: 0 0 8px rgba(0, 121, 107, 0.5);
+}
+
+.text-input:hover {
+    box-shadow: 0 0 5px rgba(0, 121, 107, 0.3);
 }
 
 /* Button styles */
@@ -60,16 +88,61 @@ h1 {
     transition: background-color 0.3s, transform 0.2s;
 }
 
-/* Button hover effect */
 .palindrome-btn:hover {
     background-color: #004d40; 
     transform: translateY(-2px);
 }
 
+.palindrome-btn:active {
+    transform: translateY(2px);
+    background-color: #005b4f;
+}
+
 /* Result text styles */
 .palindrome-result {
-    margin-top: 20px;
+    margin-top: 15px; 
     font-size: 18px;
-    color: #00796b;
+    color: #00796b; 
     font-weight: bold;
+    display: block; 
+    animation: fadeInWords 0.5s ease-in-out;
+}
+
+@keyframes fadeInWords {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* For animating */
+.palindrome-result span {
+    opacity: 0;
+    animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+.palindrome-result span:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.palindrome-result span:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.palindrome-result span:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+/* FadeIn animation for words */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
